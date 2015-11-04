@@ -38,4 +38,24 @@ public class Utils {
 		
 		
 	}
+	
+	public static BufferedImage matrixToBuffered(int[][] matrix){
+		
+		BufferedImage buffered = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_INT_ARGB);
+		
+		for (int i = 0; i < matrix.length; i++) {
+			for (int j = 0; j < matrix[0].length; j++) {
+				Color color = new Color((int)matrix[i][j],(int)matrix[i][j],(int)matrix[i][j]);
+				buffered.setRGB(j, i, color.getRGB());
+			}
+		}
+		
+		return buffered;
+		
+		
+	}
+	
+	
+	
+	
 }
