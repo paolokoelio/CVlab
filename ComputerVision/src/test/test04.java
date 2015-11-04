@@ -2,6 +2,8 @@ package test;
 
 import java.io.IOException;
 
+import cleanNoise.Average;
+import cleanNoise.Median;
 import filter.ImageLoader;
 import filter.Utils;
 import noise.INoise;
@@ -26,6 +28,13 @@ public class test04 {
 			noisedMatrix = noise.addNoise(matrix);
 			
 			Utils.printImage(Utils.matrixToBuffered(noisedMatrix), "prova");
+			Average avg = new Average(noisedMatrix);
+			avg.filter();
+			Utils.printImage(Utils.matrixToBuffered(avg.getMatrix()), "pulite");
+			Median median = new Median(noisedMatrix);
+			median.filter(1);
+			Utils.printImage(Utils.matrixToBuffered(median.getMatrix()), "pulwwite");
+
 			
 			
 		} catch (IOException e) {
