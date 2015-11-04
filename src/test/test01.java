@@ -8,14 +8,10 @@ import filter.Utils;
 
 public class test01 {
 
-	
 	public static void main(String[] args) {
-		
-		 float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };
-		 float[][] horizontalMask = { { 1, (float) Math.sqrt(2), 1 }, { 0, 0, 0 }, { -1, -(float) Math.sqrt(2), -1 } };
-		 
-		 
-		 
+
+		float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };
+		float[][] horizontalMask = { { 1, (float) Math.sqrt(2), 1 }, { 0, 0, 0 }, { -1, -(float) Math.sqrt(2), -1 } };
 
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
 
@@ -27,9 +23,6 @@ public class test01 {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 
-		
-		
 	}
 }
