@@ -2,13 +2,15 @@ package noise;
 
 import java.util.Random;
 
-public class SaltAndPepper implements INoise {
+public class MixedNoise implements INoise {
 
+	private int constant;
 	private float upper;
 	private float lower;
 
-	public SaltAndPepper(float upper, float lower) {
+	public MixedNoise(int constant, float upper, float lower) {
 		super();
+		this.constant = constant;
 		this.upper = upper;
 		this.lower = lower;
 	}
@@ -28,19 +30,30 @@ public class SaltAndPepper implements INoise {
 				} else if (tmp < lower) {
 					matrix[i][j] = 0;
 				} else {
-					matrix[i][j] = image[i][j];
+					matrix[i][j] = image[i][j] + uniform(constant);
+					if (matrix[i][j] < 0) {
+						matrix[i][j] = 0;
+					}
+					if (matrix[i][j] > 255) {
+						matrix[i][j] = 255;
+					}
 				}
-
-				System.out.println(image[i][j] + " " + matrix[i][j]);
 
 			}
 		}
 
 		return matrix;
+
 	}
 
 	private float casual() {
 		Random random = new Random();
 		return random.nextFloat();
 	}
+
+	private int uniform(int constant) {
+		Random random = new Random();
+		return (int) ((random.nextFloat() - (float) 0.5) * 2 * constant);
+	}
+
 }
