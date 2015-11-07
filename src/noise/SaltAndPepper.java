@@ -31,7 +31,7 @@ public class SaltAndPepper implements INoise {
 					matrix[i][j] = image[i][j];
 				}
 
-				System.out.println(image[i][j] + " " + matrix[i][j]);
+				//System.out.println(image[i][j] + " " + matrix[i][j]);
 
 			}
 		}

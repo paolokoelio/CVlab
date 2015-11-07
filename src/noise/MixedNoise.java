@@ -23,7 +23,7 @@ public class MixedNoise implements INoise {
 		for (int i = 0; i < image.length; i++) {
 			for (int j = 0; j < image[0].length; j++) {
 
-				float tmp = casual();
+				float tmp = randomizer();
 
 				if (tmp > upper) {
 					matrix[i][j] = 255;
@@ -46,7 +46,7 @@ public class MixedNoise implements INoise {
 
 	}
 
-	private float casual() {
+	private float randomizer() {
 		Random random = new Random();
 		return random.nextFloat();
 	}
