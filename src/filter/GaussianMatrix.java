@@ -13,12 +13,12 @@ public class GaussianMatrix {
 		double sum = 0.0;
 
 		// Choose how many decimal numbers to display
-		DecimalFormat numberFormat = new DecimalFormat("#.00000");
+		DecimalFormat numberFormat = new DecimalFormat("#.0000");
 
 		for (int i = 0; i < dimensionKernel; i++)
 			for (int j = 0; j < dimensionKernel; j++) {
 				kernel[i][j] = Math.exp(-0.5 * (Math.pow((i - mean) / sigma, 2.0) + Math.pow((j - mean) / sigma, 2.0)))
-						/ Math.sqrt(2 * sigma * sigma * Math.PI);
+						/ (2 * sigma * sigma * Math.PI);
 
 				sum += kernel[i][j];
 			}
