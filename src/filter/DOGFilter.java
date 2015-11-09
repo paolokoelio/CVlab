@@ -1,5 +1,7 @@
 package filter;
 
+import java.text.DecimalFormat;
+
 public class DOGFilter {
 
 	private int[][] matrix;
@@ -11,17 +13,19 @@ public class DOGFilter {
 //	private double[][] gauss2 = { { 0.1019, 0.1154, 0.1019 }, { 0.1154, 0.1308, 0.1154 }, { 0.1019, 0.1154, 0.1019 } }; //sigma 2
 	
 	
-	private double[][] gauss1 = { { 0.0751, 0.1238, 0.0751 }, { 0.1238, 0.2042, 0.1238 }, { 0.0751, 0.1238, 0.0751 } };
-	private double[][] gauss2 = { { 0.1019, 0.1154, 0.1019 }, { 0.1154, 0.1308, 0.1154 }, { 0.1019, 0.1154, 0.1019 } };
-	private double[][] dog3x3 = new double[3][3];
-
+	private double[][] gauss1;
+	private double[][] gauss2; 
+	private double[][] dog;
+	
 	public DOGFilter(int[][] matrix) {
 		super();
 		this.matrix = matrix;
 	}
 
-	public double[][] getDogMatrix() {
-		double[][] filtered = filter(this.dog3x3);
+	public double[][] getDogMatrix(int dogDim) {
+		this.dog = new double[dogDim][dogDim];
+		
+		double[][] filtered = filter(this.dog);
 		double[][] tmp = new double[filtered.length][filtered[0].length];
 
 		for (int i = 0; i < filtered.length; i++) {
@@ -50,7 +54,7 @@ public class DOGFilter {
 			for (int j = 0; j < filtered[0].length; j++) {
 				filtered[i][j] = matrix[i][j];
 				if (filtered[i][j] > 255) {
-					System.out.println(filtered[i][j]);
+					//System.out.println(filtered[i][j]);
 				}
 			}
 		}
@@ -58,7 +62,7 @@ public class DOGFilter {
 			for (int j = 0; j < filtered[0].length; j++) {
 				filtered1[i][j] = matrix[i][j];
 				if (filtered[i][j] > 255) {
-					System.out.println(filtered[i][j]);
+					//System.out.println(filtered[i][j]);
 				}
 			}
 		}
@@ -78,25 +82,32 @@ public class DOGFilter {
 				if (convolution < -255) {
 					convolution = -255;
 				}
-				System.out.println(convolution);
+				//System.out.println(convolution);
 
 				filtered1[i][j] = convolution;
 			}
 
 		}
-		System.out.println(filtered.length + " " + filtered[0].length);
+		//System.out.println(filtered.length + " " + filtered[0].length);
 		return filtered1;
 	}
 
-	public void genGauss() {
-
+	public void setGauss(double[][] g1, double[][] g2){
+		this.gauss1 = g1;
+		this.gauss2 = g2;
+		
 	}
 
 	public void subtract(double[][] A, double[][] B) {
 
+		DecimalFormat numberFormat = new DecimalFormat("#.00000");
+		
 		for (int r = 0; r < A.length; r++) {
 			for (int c = 0; c < A[0].length; c++) {
-				this.dog3x3[r][c] = A[r][c] - B[r][c];
+				this.dog[r][c] = A[r][c] - B[r][c];
+				System.out.print(numberFormat.format(dog[r][c]) + ", ");
+				if (c == A.length - 1)
+					System.out.println();
 			}
 		}
 	}
