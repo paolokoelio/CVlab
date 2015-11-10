@@ -3,9 +3,9 @@ package test;
 import java.io.IOException;
 
 import filter.ImageLoader;
-import filter.Utils;
 import noise.INoise;
 import noise.SaltAndPepper;
+import utils.Utils;
 
 public class test03 {
 

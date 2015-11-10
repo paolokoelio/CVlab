@@ -5,7 +5,7 @@ import java.io.IOException;
 import filter.DOGFilter;
 import filter.GaussianMatrix;
 import filter.ImageLoader;
-import filter.Utils;
+import utils.Utils;
 
 public class test05 {
 

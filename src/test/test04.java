@@ -5,9 +5,9 @@ import java.io.IOException;
 import cleanNoise.Average;
 import cleanNoise.Median;
 import filter.ImageLoader;
-import filter.Utils;
 import noise.INoise;
 import noise.MixedNoise;
+import utils.Utils;
 
 public class test04 {
 

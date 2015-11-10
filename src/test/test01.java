@@ -4,21 +4,27 @@ import java.io.IOException;
 
 import filter.ImageLoader;
 import filter.SobelFilter;
-import filter.Utils;
+import filter.SobelFilterPhase;
+import utils.Normalization;
+import utils.Utils;
 
 public class test01 {
 
 	public static void main(String[] args) {
 
-		float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };
-		float[][] horizontalMask = { { 1, (float) Math.sqrt(2), 1 }, { 0, 0, 0 }, { -1, -(float) Math.sqrt(2), -1 } };
-
-		ImageLoader image = new ImageLoader("image/inverno.jpg");
+		ImageLoader image = new ImageLoader("image/pagliaccio.png");
 
 		try {
 			int[][] matrix = image.imageToMatrix();
 			SobelFilter sobel = new SobelFilter(matrix);
-			Utils.printImage(Utils.matrixToBuffered(sobel.getSobelMatrix()), "prova");
+			Utils.printImage(Utils.matrixToBuffered(sobel.getSobelMatrix()), "Sobel Module");
+			
+			
+			SobelFilterPhase sobel2 = new SobelFilterPhase(matrix);
+			Normalization normalized = new Normalization(160, 150);
+			
+			Utils.printImage(Utils.matrixToBuffered(sobel2.getSobelMatrix()), "Sobel Phase unNormalized");
+			Utils.printImage(Utils.matrixToBuffered(normalized.run(sobel2.getSobelMatrix())), "Sobel Phase Normalized");
 
 		} catch (IOException e) {
 			e.printStackTrace();
