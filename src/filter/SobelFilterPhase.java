@@ -21,7 +21,7 @@ public class SobelFilterPhase {
 		for (int i = 0; i < vertical.length; i++) {
 			for (int j = 0; j < vertical[0].length; j++) {
 				//sobel[i][j] = (float) Math.sqrt(horizontal[i][j]*horizontal[i][j] + vertical[i][j]*vertical[i][j]);
-				sobel[i][j] += (float) ((10) * Math.atan2(vertical[i][j], horizontal[i][j]));
+				sobel[i][j] += (float) (180 * Math.atan2(vertical[i][j], horizontal[i][j]));
 				System.out.println(sobel[i][j]);
 				if (sobel[i][j] > 255) {
 					sobel[i][j] = 255;
@@ -31,6 +31,44 @@ public class SobelFilterPhase {
 				}
 			}
 		}
+	
+		
+		//equalizzazione di bardo (per cambiare mettere int[][] come ritorno
+		
+		
+		double min = sobel[0][0];
+		double max = sobel[0][0];
+		for (int k = 0; k < sobel.length; k++) {
+			for (int k2 = 0; k2 < sobel[k].length; k2++) {
+				if (sobel[k][k2] < min)
+					min = sobel[k][k2];
+				if (sobel[k][k2] > max)
+					max = sobel[k][k2];
+			}
+		}
+		int[][] newMatrix = new int[sobel.length][sobel[0].length];
+
+		for (int k = 0; k < sobel.length; k++) {
+			for (int k2 = 0; k2 < sobel[k].length; k2++) {
+				double grayPixel = sobel[k][k2];
+				double newGrayPixel = 0;
+				if (grayPixel <= min) {
+					newGrayPixel = 0;
+				} else if (grayPixel >= max) {
+					newGrayPixel = 255;
+				} else {
+					newGrayPixel = 255 * (grayPixel - min) / (max - min);
+				}
+				newMatrix[k][k2] = (int) newGrayPixel;
+				//System.out.println(newGrayPixel);
+			}
+		}
+		
+		
+		//-- fine bardo
+		
+		
+
 		return sobel;
 	}
 

@@ -12,7 +12,7 @@ public class test01 {
 
 	public static void main(String[] args) {
 
-		ImageLoader image = new ImageLoader("image/pagliaccio.png");
+		ImageLoader image = new ImageLoader("image/inverno.jpg");
 
 		try {
 			int[][] matrix = image.imageToMatrix();
@@ -24,7 +24,7 @@ public class test01 {
 			Normalization normalized = new Normalization(160, 150);
 			
 			Utils.printImage(Utils.matrixToBuffered(sobel2.getSobelMatrix()), "Sobel Phase unNormalized");
-			Utils.printImage(Utils.matrixToBuffered(normalized.run(sobel2.getSobelMatrix())), "Sobel Phase Normalized");
+			//Utils.printImage(Utils.matrixToBuffered(normalized.run(sobel2.getSobelMatrix())), "Sobel Phase Normalized");
 
 		} catch (IOException e) {
 			e.printStackTrace();
