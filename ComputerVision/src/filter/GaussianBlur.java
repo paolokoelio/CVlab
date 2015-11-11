@@ -1,8 +1,23 @@
 package filter;
 
-public class GaussianBlur {
+public class GaussianBlur  implements IFilter{
 
-	public int[][] blurFilter(int[][] image, double sigma) {
+
+	private double sigma;
+	
+	public GaussianBlur(double sigma) {
+		super();
+		this.sigma = sigma;
+	}
+
+
+	@Override
+	public int[][] addFilter(int[][] image) {
+		return blurFilter(image);
+	}
+	
+	
+	public int[][] blurFilter(int[][] image) {
 
 		int dim = (int) Math.ceil(sigma * 6);
 		if (dim % 2 == 0) {
@@ -40,5 +55,6 @@ public class GaussianBlur {
 		return matrix;
 
 	}
+
 
 }
