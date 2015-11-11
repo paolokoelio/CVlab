@@ -26,7 +26,7 @@ public class DogFilter {
 		
 		for (int i = 0; i < gaussian.length; i++) {
 			for (int j = 0; j < gaussian.length; j++) {
-				System.out.print(gaussian[i][j]+ " ");
+				System.out.print(gauss[i][j]+ " ");
 			}
 			System.out.println();
 		}

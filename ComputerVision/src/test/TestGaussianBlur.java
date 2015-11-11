@@ -2,27 +2,23 @@ package test;
 
 import java.io.IOException;
 
-import filter.DogFilter;
+import filter.GaussianBlur;
 import filter.ImageLoader;
 import filter.Utils;
 
-public class TestDoG {
-	public static void main(String[] args) {
+public class TestGaussianBlur {
 
+	public static void main(String[] args) {
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
-		
-		
-		
 
 		try {
 			int[][] matrix = image.imageToMatrix();
-			DogFilter dog = new DogFilter();
-			Utils.printImage(Utils.matrixToBuffered(dog.dogFilter(matrix, 0.5, 2)), "dog");
+			GaussianBlur blur = new GaussianBlur();
+			Utils.printImage(Utils.matrixToBuffered(blur.blurFilter(matrix, 10)), "blur");
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
 	}
-
 }
