@@ -63,15 +63,15 @@ public class Utils {
 		for (int x = -dim / 2; x <= dim / 2; x++) {
 			for (int y = -dim/2 ; y <= dim / 2; y++) {
 				r = Math.sqrt(x * x + y * y);
-				gauss[x + dim / 2][y + dim / 2] = (Math.exp(-(r * r) / s)) / (Math.PI * s);
+				gauss[x + dim / 2][y + dim / 2] = (Math.exp(-(x*x+y*y) / s)) / (Math.PI * s);
 				sum += gauss[x + dim / 2][y + dim / 2];
 			}
 		}
 
 		// normalize the Kernel
-		for (int i = 0; i < dim; ++i)
-			for (int j = 0; j < dim; ++j)
-				gauss[i][j] /= sum;
+//		for (int i = 0; i < dim; ++i)
+//			for (int j = 0; j < dim; ++j)
+//				gauss[i][j] /= sum;
 
 		return gauss;
 

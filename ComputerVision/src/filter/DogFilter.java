@@ -4,7 +4,7 @@ public class DogFilter {
 
 	public int[][] dogFilter(int[][] image, double sigma, double sigma2) {
 
-		int dim = (int) (Math.round(Math.sqrt(sigma2)) * 6 + 1);
+		int dim = (int) Math.ceil(sigma2 * 6);
 		if (dim % 2 == 0) {
 			dim += 1;
 		}
@@ -17,27 +17,33 @@ public class DogFilter {
 		gauss2 = Utils.getGaussian(sigma2, dim);
 
 		double[][] gaussian = new double[dim][dim];
-
+		
 		for (int i = 0; i < gaussian.length; i++) {
 			for (int j = 0; j < gaussian.length; j++) {
 				gaussian[i][j] = gauss[i][j] - gauss2[i][j];
 			}
 		}
+		
+		for (int i = 0; i < gaussian.length; i++) {
+			for (int j = 0; j < gaussian.length; j++) {
+				System.out.print(gaussian[i][j]+ " ");
+			}
+			System.out.println();
+		}
 
-		for (int i = 1; i < image.length - dim + 1; i++) {
-			for (int j = 1; j < image[0].length - dim + 1; j++) {
+		for (int i = dim/2; i < image.length - dim/2; i++) {
+			for (int j = dim/2; j < image[0].length - dim/2; j++) {
 
 				double convolution = 0;
 
 				for (int j2 = 0; j2 < dim; j2++) {
 					for (int k = 0; k < dim; k++) {
-						convolution += image[j2 + i - 1][k + j - 1] * gaussian[j2][k];
+						convolution += image[j2 + i - dim/2][k + j - dim/2] * gaussian[j2][k];
 					}
 				}
 
-				matrix[i][j] = (int) (convolution);
 
-				if (matrix[i][j] < 0) {
+				if (convolution < 0) {
 					matrix[i][j] = 0;
 				} else {
 					matrix[i][j] = 255;
