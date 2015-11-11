@@ -5,10 +5,10 @@ import java.util.Random;
 public class MixedNoise implements INoise {
 
 	private int constant;
-	private float upper;
-	private float lower;
+	private double upper;
+	private double lower;
 
-	public MixedNoise(int constant, float upper, float lower) {
+	public MixedNoise(double lower, double upper, int constant) {
 		super();
 		this.constant = constant;
 		this.upper = upper;

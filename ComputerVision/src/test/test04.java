@@ -20,7 +20,7 @@ public class test04 {
 		
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
 		
-		INoise noise = new MixedNoise(constant, up, down);
+		INoise noise = new MixedNoise(down, up, constant);
 		
 		try {
 			int[][] matrix = image.imageToMatrix();

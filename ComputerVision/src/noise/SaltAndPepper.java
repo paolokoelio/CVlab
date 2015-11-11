@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class SaltAndPepper implements INoise {
 
-	private float upper;
-	private float lower;
+	private double upper;
+	private double lower;
 
-	public SaltAndPepper(float upper, float lower) {
+	public SaltAndPepper(double lower, double upper) {
 		super();
 		this.upper = upper;
 		this.lower = lower;
@@ -31,7 +31,7 @@ public class SaltAndPepper implements INoise {
 					matrix[i][j] = image[i][j];
 				}
 
-				System.out.println(image[i][j] + " " + matrix[i][j]);
+			//	System.out.println(image[i][j] + " " + matrix[i][j]);
 
 			}
 		}

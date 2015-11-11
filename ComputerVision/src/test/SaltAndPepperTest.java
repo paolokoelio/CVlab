@@ -7,7 +7,7 @@ import filter.Utils;
 import noise.INoise;
 import noise.SaltAndPepper;
 
-public class test03 {
+public class SaltAndPepperTest {
 
 	public static void main(String[] args) {
 		
@@ -17,7 +17,7 @@ public class test03 {
 		
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
 
-		INoise noise = new SaltAndPepper(up, down);
+		INoise noise = new SaltAndPepper(down, up);
 		
 		
 		try {

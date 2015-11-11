@@ -2,10 +2,13 @@ package filter;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuBar;
 
 public class Utils {
 
@@ -42,6 +45,12 @@ public class Utils {
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
+				if (matrix[i][j]<0) {
+					matrix[i][j] =0;
+				}
+				if (matrix[i][j]>255) {
+					matrix[i][j] =255;
+				}
 				Color color = new Color((int) matrix[i][j], (int) matrix[i][j], (int) matrix[i][j]);
 				buffered.setRGB(j, i, color.getRGB());
 			}
@@ -67,5 +76,45 @@ public class Utils {
 		return gauss;
 
 	}
+	
+	
+	
+	
+	public static String selectOpenFile(JMenuBar menuBar){
+		
+		JFileChooser fileChooser = new JFileChooser();
+		//fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+		int result = fileChooser.showOpenDialog(menuBar);
+		if (result == JFileChooser.APPROVE_OPTION) {
+		    File selectedFile = fileChooser.getSelectedFile();
+		    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+		    return selectedFile.getAbsolutePath();	
+		}
+		return "";
+	}
+	
+	public static String selectSaveFile(JMenuBar menuBar){
+
+		JFileChooser fileChooser = new JFileChooser();
+		fileChooser.setDialogTitle("Specify a file to save");   
+		 
+		int userSelection = fileChooser.showSaveDialog(menuBar);
+		 
+		if (userSelection == JFileChooser.APPROVE_OPTION) {
+		    File fileToSave = fileChooser.getSelectedFile();
+		    System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+		    return fileToSave.getAbsolutePath();
+		}
+		return "";
+	}
+	
+	public static JFrame createFrame(String str, int height, int width) {
+		JFrame frame = new JFrame();
+		frame.setSize(width,height);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle(str);
+		return frame;
+	}
+
 
 }
