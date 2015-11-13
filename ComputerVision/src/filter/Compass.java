@@ -5,12 +5,20 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Compass {
+public class Compass implements IFilter{
 
 	private List<int[][]> masksList = new LinkedList<int[][]>();
 
 	private int[][] matrix;
 
+	
+	@Override
+	public int[][] addFilter(int[][] image) {
+		
+		return filter();
+	}
+
+	
 	public Compass(int[][] matrix) {
 		super();
 		this.matrix = matrix;
@@ -32,8 +40,8 @@ public class Compass {
 		masksList.add(mask8);
 	}
 
-	public float[][] filter() {
-		float[][] filtered1 = new float[matrix.length][matrix[0].length];
+	public int[][] filter() {
+		int[][] filtered1 = new int[matrix.length][matrix[0].length];
 
 		for (int i = 0; i < filtered1.length; i++) {
 			for (int j = 0; j < filtered1[0].length; j++) {
@@ -73,7 +81,7 @@ public class Compass {
 //								* mask39[j2][k];
 //					}
 //				}
-				System.out.println(max1 + " " + min1);
+//				System.out.println(max1 + " " + min1);
 			}
 		}
 		for (int i = 0; i < filtered1.length; i++) {
@@ -85,5 +93,7 @@ public class Compass {
 		}
 		return filtered1;
 	}
+
+
 
 }

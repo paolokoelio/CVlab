@@ -11,7 +11,7 @@ public class TestGaussianBlur {
 
 	public static void main(String[] args) {
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
-		IFilter filter = new GaussianBlur(10);
+		IFilter filter = new GaussianBlur(20);
 
 		try {
 			int[][] matrix = image.imageToMatrix();
