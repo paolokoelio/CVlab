@@ -40,8 +40,27 @@ public class GaussianMatrix {
 		this.kernel = kernel;
 	}
 
+	
+	//alternative method
 	public double[][] getMatrix() {
 
 		return this.kernel;
+	}
+	
+	public static double[][] getGaussian(double sigma, int dim) {
+
+		double[][] gauss = new double[dim][dim];
+		double s = 2.0 * sigma * sigma;
+
+
+		// generate dimXdim kernel
+		for (int x = -dim / 2; x <= dim / 2; x++) {
+			for (int y = -dim/2 ; y <= dim / 2; y++) {
+				gauss[x + dim / 2][y + dim / 2] = (Math.exp(-(x*x+y*y) / s)) / (Math.PI * s);
+			}
+		}
+
+		return gauss;
+
 	}
 }
