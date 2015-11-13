@@ -5,10 +5,9 @@ import java.io.IOException;
 import filter.ImageLoader;
 import filter.SobelFilter;
 import filter.SobelFilterPhase;
-import utils.Normalization;
 import utils.Utils;
 
-public class test01 {
+public class SobelModuleAndPhaseTest {
 
 	public static void main(String[] args) {
 
@@ -21,7 +20,7 @@ public class test01 {
 			
 			
 			SobelFilterPhase sobel2 = new SobelFilterPhase(matrix);
-			Normalization normalized = new Normalization(160, 150);
+			//Normalization normalized = new Normalization(160, 150);
 			
 			Utils.printImage(Utils.matrixToBuffered(sobel2.getSobelMatrix()), "Sobel Phase");
 			//Utils.printImage(Utils.matrixToBuffered(normalized.run(sobel2.getSobelMatrix())), "Sobel Phase Normalized");

@@ -6,19 +6,19 @@ import filter.ImageLoader;
 import filter.ThreeOnNineFilter;
 import utils.Utils;
 
-public class test06 {
+public class ThreeOverNineTest {
 
 	public static void main(String[] args) {
 
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
 
-		
+		double tau = 0.68;
+		double P = 8;
 
 		try {
 			int[][] matrix = image.imageToMatrix();
 
-			
-			ThreeOnNineFilter filter = new ThreeOnNineFilter(matrix, 3);
+			ThreeOnNineFilter filter = new ThreeOnNineFilter(matrix, tau, P);
 
 			Utils.printImage(Utils.matrixToBuffered(filter.filter()), "3to9");
 

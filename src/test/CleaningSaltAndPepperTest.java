@@ -9,7 +9,7 @@ import noise.INoise;
 import noise.MixedNoise;
 import utils.Utils;
 
-public class test04 {
+public class CleaningSaltAndPepperTest {
 
 	public static void main(String[] args) {
 

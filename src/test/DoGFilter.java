@@ -7,7 +7,7 @@ import filter.GaussianMatrix;
 import filter.ImageLoader;
 import utils.Utils;
 
-public class test05 {
+public class DoGFilter {
 
 	public static void main(String[] args) {
 

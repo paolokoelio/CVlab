@@ -7,7 +7,7 @@ import noise.INoise;
 import noise.UniformNoise;
 import utils.Utils;
 
-public class test02 {
+public class UniformNoiseTest {
 	
 	public static void main(String[] args) {
 		

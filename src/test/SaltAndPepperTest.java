@@ -7,7 +7,7 @@ import noise.INoise;
 import noise.SaltAndPepper;
 import utils.Utils;
 
-public class test03 {
+public class SaltAndPepperTest {
 
 	public static void main(String[] args) {
 

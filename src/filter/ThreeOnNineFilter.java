@@ -3,41 +3,40 @@ package filter;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import utils.Normalization;
+
 public class ThreeOnNineFilter {
 
 	private int[][] original;
 	private double tau;
+	private double P;
 
-	public ThreeOnNineFilter(int[][] origninal, double tau) {
+	public ThreeOnNineFilter(int[][] origninal, double tau, double P) {
 		super();
 		this.tau = tau;
 		this.original = origninal;
+		this.P = P;
 	}
 
-	public double[][] filter() {
+	// principal method for filtering
+	public int[][] filter() {
 
 		double[][] toFilter = new double[original.length][original[0].length];
 
+		// copying original image into temporary array
 		for (int i = 0; i < toFilter.length; i++) {
 			for (int j = 0; j < toFilter[0].length; j++) {
 				toFilter[i][j] = original[i][j];
-				if (toFilter[i][j] > 255) {
-					// System.out.println("filtered[i][j]);
-				}
 			}
 		}
 
 		double[][] filtered = new double[original.length][original[0].length];
+		int[][] filtered1 = new int[original.length][original[0].length];
 
-		for (int i = 0; i < filtered.length; i++) {
-			for (int j = 0; j < filtered[0].length; j++) {
-				filtered[i][j] = original[i][j];
-				if (filtered[i][j] > 255) {
-					// System.out.println(filtered[i][j]);
-				}
-			}
-		}
-
+		// executing 3on9 by generating an arrayList of values for each piece of
+		// the neighbors, getting the max and applying the tau and a threshold;
+		// then filling the resulting array filtered with values from the
+		// applied formula on finP 
 		for (int i = 1; i < toFilter.length - 1; i++) {
 			for (int j = 1; j < toFilter[0].length - 1; j++) {
 				ArrayList<Double> Ps = new ArrayList<Double>(8);
@@ -51,33 +50,44 @@ public class ThreeOnNineFilter {
 				Ps.add(toFilter[i][j + 1] + toFilter[i - 1][j + 1] + toFilter[i - 1][j]); // P8
 
 				double maxP = Collections.max(Ps);
+				double thr = ((1 - tau) / (2 * tau - 1));
+				double finP = 0;
+				if (maxP > P) {
+					double sumP = 0;
+					sumP += toFilter[i - 1][j - 1];
+					sumP += toFilter[i - 1][j];
+					sumP += toFilter[i - 1][j + 1];
+					sumP += toFilter[i][j - 1];
+					sumP += toFilter[i][j];
+					sumP += toFilter[i][j + 1];
+					sumP += toFilter[i + 1][j - 1];
+					sumP += toFilter[i + 1][j];
+					sumP += toFilter[i + 1][j + 1];
 
-				double sumP = 0;
-
-				for (Double I : Ps) {
-					if (I > 255)
-						I = (double) 255;
-					sumP += I;
+					finP = (1.5 * ((maxP / (double) sumP) - 0.333));
+					if (finP < thr) {
+						filtered[i][j] = finP;
+					}
 				}
-
-				double P = (3 / 2) * (maxP / sumP * 0.333);
-				if (P > 255)
-					P = 255;
-				else if (P < 0)
-					P = 0;
-
-				filtered[i][j] = P;
 
 			}
 		}
 
-		return filtered;
+		// normalizing the image in order to get visible results
+		filtered1 = Normalization.normalizeImage(filtered);
 
-	}
+		// needed to shift the final image to the border of one pixel
+		int[][] filtered2 = new int[original.length - 2][original[0].length - 2];
 
-	public float[][] getNewMatrix() {
-		// TODO Auto-generated method stub
-		return null;
+		for (int i = 1; i < filtered1.length - 1; i++) {
+			for (int j = 1; j < filtered1[i].length - 1; j++) {
+
+				filtered2[i - 1][j - 1] = filtered1[i][j];
+			}
+		}
+
+		return filtered2;
+
 	}
 
 }
