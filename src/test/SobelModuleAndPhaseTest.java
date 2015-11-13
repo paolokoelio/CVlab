@@ -2,9 +2,9 @@ package test;
 
 import java.io.IOException;
 
-import filter.ImageLoader;
 import filter.SobelFilter;
 import filter.SobelFilterPhase;
+import utils.ImageLoader;
 import utils.Utils;
 
 public class SobelModuleAndPhaseTest {

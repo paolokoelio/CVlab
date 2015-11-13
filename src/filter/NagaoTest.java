@@ -5,6 +5,7 @@ import java.io.IOException;
 import cleanNoise.Nagao;
 import noise.INoise;
 import noise.MixedNoise;
+import utils.ImageLoader;
 import utils.Utils;
 
 public class NagaoTest {

@@ -2,9 +2,9 @@ package test;
 
 import java.io.IOException;
 
-import filter.ImageLoader;
 import noise.INoise;
 import noise.SaltAndPepper;
+import utils.ImageLoader;
 import utils.Utils;
 
 public class SaltAndPepperTest {

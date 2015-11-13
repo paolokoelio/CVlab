@@ -2,8 +2,8 @@ package test;
 
 import java.io.IOException;
 
-import filter.ImageLoader;
 import filter.ThreeOnNineFilter;
+import utils.ImageLoader;
 import utils.Utils;
 
 public class ThreeOverNineTest {

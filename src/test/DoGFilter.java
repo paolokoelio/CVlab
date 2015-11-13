@@ -3,8 +3,8 @@ package test;
 import java.io.IOException;
 
 import filter.DOGFilter;
-import filter.GaussianMatrix;
-import filter.ImageLoader;
+import utils.GaussianMatrix;
+import utils.ImageLoader;
 import utils.Utils;
 
 public class DoGFilter {
