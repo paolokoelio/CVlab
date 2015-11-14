@@ -8,7 +8,7 @@ package filter;
  * "remove smoothness" in order to enhance borders by setting pixels that differ
  * from black (0) to white (255). Then we perform an edge detection function of
  * a 3x3 kernel (edgeDetector) analyzing the neighbors a setting the pixel white
- * if no neighbors differs.
+ * if no neighbors differ.
  * 
  * @author koelio
  *
