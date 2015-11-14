@@ -1,5 +1,11 @@
 package filter;
 
+/**
+ * This filter is about weighting the most relevant sum of pixels of 8 pieces of the neighborhood of a give pixel.
+ * We use a threshold, obtained combining the parameter tau in the formula,
+ * for setting the final given pixel, also through a formula.
+ * A more detailed description is given near the single methods.
+ */
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -36,7 +42,7 @@ public class ThreeOnNineFilter {
 		// executing 3on9 by generating an arrayList of values for each piece of
 		// the neighbors, getting the max and applying the tau and a threshold;
 		// then filling the resulting array filtered with values from the
-		// applied formula on finP 
+		// applied formula on finP
 		for (int i = 1; i < toFilter.length - 1; i++) {
 			for (int j = 1; j < toFilter[0].length - 1; j++) {
 				ArrayList<Double> Ps = new ArrayList<Double>(8);

@@ -1,5 +1,13 @@
 package filter;
 
+/**
+ * It is the same for the Sobel Module Filter with the exception that we're considering the
+ * phase of x and y components as a differentiation method. Thus we obtain the
+ * directions of the edges and a quite different visual result.
+ * 
+ * @author koelio
+ *
+ */
 public class SobelFilterPhase {
 
 	private float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };
@@ -20,7 +28,9 @@ public class SobelFilterPhase {
 
 		for (int i = 0; i < vertical.length; i++) {
 			for (int j = 0; j < vertical[0].length; j++) {
-				//sobel[i][j] = (float) Math.sqrt(horizontal[i][j]*horizontal[i][j] + vertical[i][j]*vertical[i][j]);
+				// sobel[i][j] = (float)
+				// Math.sqrt(horizontal[i][j]*horizontal[i][j] +
+				// vertical[i][j]*vertical[i][j]);
 				sobel[i][j] += (float) (180 * Math.atan2(vertical[i][j], horizontal[i][j]));
 				System.out.println(sobel[i][j]);
 				if (sobel[i][j] > 255) {
@@ -31,11 +41,9 @@ public class SobelFilterPhase {
 				}
 			}
 		}
-	
-		
-		//equalizzazione di bardo (per cambiare mettere int[][] come ritorno
-		
-		
+
+		// equalizzazione di bardo (per cambiare mettere int[][] come ritorno
+
 		double min = sobel[0][0];
 		double max = sobel[0][0];
 		for (int k = 0; k < sobel.length; k++) {
@@ -60,14 +68,11 @@ public class SobelFilterPhase {
 					newGrayPixel = 255 * (grayPixel - min) / (max - min);
 				}
 				newMatrix[k][k2] = (int) newGrayPixel;
-				//System.out.println(newGrayPixel);
+				// System.out.println(newGrayPixel);
 			}
 		}
-		
-		
-		//-- fine bardo
-		
-		
+
+		// -- fine bardo
 
 		return sobel;
 	}
@@ -80,7 +85,7 @@ public class SobelFilterPhase {
 			for (int j = 0; j < filtered[0].length; j++) {
 				filtered[i][j] = matrix[i][j];
 				if (filtered[i][j] > 255) {
-					//System.out.println(filtered[i][j]);
+					// System.out.println(filtered[i][j]);
 				}
 			}
 		}
@@ -88,7 +93,7 @@ public class SobelFilterPhase {
 			for (int j = 0; j < filtered[0].length; j++) {
 				filtered1[i][j] = matrix[i][j];
 				if (filtered[i][j] > 255) {
-					//System.out.println(filtered[i][j]);
+					// System.out.println(filtered[i][j]);
 				}
 			}
 		}

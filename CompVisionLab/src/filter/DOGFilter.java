@@ -1,5 +1,18 @@
 package filter;
 
+/**
+ * The Difference of Gaussians filter consists in subtracting two gaussian
+ * kernels with different sigmas and the convolving the result with the image.
+ * The gaussians' dimention is set according to the sigmas (lets say it has to
+ * be six times the biggest variance). After this point it's useful to
+ * "remove smoothness" in order to enhance borders by setting pixels that differ
+ * from black (0) to white (255). Then we perform an edge detection function of
+ * a 3x3 kernel (edgeDetector) analyzing the neighbors a setting the pixel white
+ * if no neighbors differs.
+ * 
+ * @author koelio
+ *
+ */
 public class DOGFilter {
 
 	private int[][] matrix;
@@ -28,15 +41,15 @@ public class DOGFilter {
 
 	public double[][] filter(double[][] mask) {
 
-		double[][] filtered = new double[matrix.length - this.kernelDim/2][matrix[0].length - this.kernelDim/2];
+		double[][] filtered = new double[matrix.length - this.kernelDim / 2][matrix[0].length - this.kernelDim / 2];
 
 		double[][] filtered1 = new double[matrix.length][matrix[0].length];
 
-//		for (int i = 0; i < filtered.length; i++) {
-//			for (int j = 0; j < filtered[0].length; j++) {
-//				filtered[i][j] = matrix[i][j];
-//			}
-//		}
+		// for (int i = 0; i < filtered.length; i++) {
+		// for (int j = 0; j < filtered[0].length; j++) {
+		// filtered[i][j] = matrix[i][j];
+		// }
+		// }
 
 		for (int i = 0; i < filtered1.length; i++) {
 			for (int j = 0; j < filtered1[0].length; j++) {
@@ -44,13 +57,13 @@ public class DOGFilter {
 			}
 		}
 
-		for (int i = this.kernelDim/2; i < filtered1.length - this.kernelDim/2; i++) {
-			for (int j = this.kernelDim/2; j < filtered1[0].length - this.kernelDim/2; j++) {
+		for (int i = this.kernelDim / 2; i < filtered1.length - this.kernelDim / 2; i++) {
+			for (int j = this.kernelDim / 2; j < filtered1[0].length - this.kernelDim / 2; j++) {
 				double convolution = 0;
 
 				for (int j2 = 0; j2 < this.kernelDim; j2++) {
 					for (int k = 0; k < this.kernelDim; k++) {
-						convolution += filtered1[j2 + i - this.kernelDim/2][k + j - this.kernelDim/2] * mask[j2][k];
+						convolution += filtered1[j2 + i - this.kernelDim / 2][k + j - this.kernelDim / 2] * mask[j2][k];
 
 					}
 				}
