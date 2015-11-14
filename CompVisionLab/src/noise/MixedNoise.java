@@ -15,6 +15,11 @@ public class MixedNoise implements INoise {
 		this.lower = lower;
 	}
 
+	/**
+	 * Setting the upper and lower thresholds for black and white pixels in case
+	 * tmp doesn't fall in this range we use a uniform noise from parameter
+	 * constant.
+	 */
 	@Override
 	public int[][] addNoise(int[][] image) {
 

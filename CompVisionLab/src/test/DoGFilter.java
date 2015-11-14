@@ -13,9 +13,8 @@ public class DoGFilter {
 
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
 
-		double sigma1 = 0.5; //parametro
-		double sigma2 = 5; //parametro
-
+		double sigma1 = 0.5; 
+		double sigma2 = 5; 
 		int DIM = (int) Math.ceil(sigma2 * 6);
 		if (DIM % 2 == 0) {
 			DIM += 1;

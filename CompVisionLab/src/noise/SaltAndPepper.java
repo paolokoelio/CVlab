@@ -13,6 +13,10 @@ public class SaltAndPepper implements INoise {
 		this.lower = lower;
 	}
 
+	
+	/**
+	 * Adding noise between an upper and a lower boundary passd as params.
+	 */
 	@Override
 	public int[][] addNoise(int[][] image) {
 
