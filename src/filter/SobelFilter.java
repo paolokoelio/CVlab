@@ -1,5 +1,21 @@
 package filter;
 
+/**
+ * Performs filtering by using horizontal and vertical masks 1,2,1 ; 0 0 0 ; -1
+ * -2 -1 (Sobel). The are square roots because when applying both masks the
+ * squared twos are multiplied and then resulting in 2, i.e. Sobel operator.
+ * Then the detection of the differences if performed by comparing the module of
+ * the x a y components after the vertical and horizontal differences detection
+ * in the previous point has been done. Ordinary convolution is used to perform
+ * the task through various for cycles (two may be removed, the're just kind of
+ * buffers).
+ * 
+ * There is no performance issue because we're using a 3x3 kernel cycles for
+ * each pixel, not that much.
+ * 
+ * @author koelio
+ *
+ */
 public class SobelFilter {
 
 	private float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };

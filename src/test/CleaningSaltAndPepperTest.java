@@ -26,19 +26,25 @@ public class CleaningSaltAndPepperTest {
 			int[][] noisedMatrix = new int[matrix.length][matrix[0].length];
 			noisedMatrix = noise.addNoise(matrix);
 
-			// sporco l'immagine di prova
-			Utils.printImage(Utils.matrixToBuffered(noisedMatrix), "sporcata");
+			/**
+			 * noising the image with mixed noise
+			 */
+			Utils.printImage(Utils.matrixToBuffered(noisedMatrix), "noised");
 
-			// pulisco l'immagine col filtro average
+			/**
+			 * de-noising the image with average filter
+			 */
 			Average avg = new Average(noisedMatrix);
 			avg.filter();
 
-			Utils.printImage(Utils.matrixToBuffered(avg.getMatrix()), "pulite");
+			Utils.printImage(Utils.matrixToBuffered(avg.getMatrix()), "cleant - avg");
 
-			// pulisco con filtro median
+			/**
+			 * noising the image with median filter
+			 */
 			Median median = new Median(noisedMatrix);
 			median.filter(1);
-			Utils.printImage(Utils.matrixToBuffered(median.getMatrix()), "pulwwite");
+			Utils.printImage(Utils.matrixToBuffered(median.getMatrix()), "clean - median");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

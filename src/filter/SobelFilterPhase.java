@@ -1,5 +1,13 @@
 package filter;
 
+/**
+ * It is the same for the Sobel Module Filter with the exception that we're considering the
+ * phase of x and y components as a differentiation method. Thus we obtain the
+ * directions of the edges and a quite different visual result.
+ * 
+ * @author koelio
+ *
+ */
 public class SobelFilterPhase {
 
 	private float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };

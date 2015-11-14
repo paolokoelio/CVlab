@@ -1,5 +1,18 @@
 package filter;
 
+/**
+ * The Difference of Gaussians filter consists in subtracting two gaussian
+ * kernels with different sigmas and the convolving the result with the image.
+ * The gaussians' dimention is set according to the sigmas (lets say it has to
+ * be six times the biggest variance). After this point it's useful to
+ * "remove smoothness" in order to enhance borders by setting pixels that differ
+ * from black (0) to white (255). Then we perform an edge detection function of
+ * a 3x3 kernel (edgeDetector) analyzing the neighbors a setting the pixel white
+ * if no neighbors differ.
+ * 
+ * @author koelio
+ *
+ */
 public class DOGFilter {
 
 	private int[][] matrix;
