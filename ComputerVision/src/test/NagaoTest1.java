@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import cleanNoise.Average;
 import cleanNoise.Median;
+import filter.IFilter;
 import filter.ImageLoader;
 import filter.Utils;
 import noise.INoise;
@@ -31,9 +32,9 @@ public class NagaoTest1 {
 			Average avg = new Average(noisedMatrix);
 			avg.filter();
 			Utils.printImage(Utils.matrixToBuffered(avg.getMatrix()), "pulite");
-			Median median = new Median(noisedMatrix);
-			median.filter(1);
-			Utils.printImage(Utils.matrixToBuffered(median.getMatrix()), "pulwwite");
+			
+			IFilter filter = new Median(1);
+			Utils.printImage(Utils.matrixToBuffered(filter.addFilter(noisedMatrix)), "pulwwite");
 
 			
 			

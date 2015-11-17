@@ -26,7 +26,7 @@ public class ButtonPanel extends JPanel{
 
 		
 		
-		filters = new JButton[11];
+		filters = new JButton[14];
 		filters[0] = new JButton("Box");
 		filters[1] = new JButton("Sharpening");
 		filters[2] = new JButton("Rank");
@@ -38,12 +38,17 @@ public class ButtonPanel extends JPanel{
 		filters[8] = new JButton("Nagao-Matsuyama");
 		filters[9] = new JButton("Gaussian Blur");
 		filters[10] = new JButton("Compass");
+		filters[11] = new JButton("Average Denoise");
+		filters[12] = new JButton("Median Denoise");
+		filters[13] = new JButton("Prewitt");
+
+
 
 		for (int i = 0; i < filters.length; i++) {
 			filters[i].setFont(new Font("Courier", Font.ITALIC, 12));
 		}
 
-		setLayout(new GridLayout(8,2));
+		setLayout(new GridLayout(9,2));
 		add(noise[0]);
 		add(filters[0]);
 		add(noise[1]);
@@ -58,6 +63,10 @@ public class ButtonPanel extends JPanel{
 		add(filters[8]);
 		add(filters[9]);
 		add(filters[10]);
+		add(filters[11]);
+		add(filters[12]);
+		add(filters[13]);
+
 	}
 
 	public JButton[] getFilters() {

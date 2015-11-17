@@ -6,7 +6,9 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Nagao {
+import filter.IFilter;
+
+public class Nagao implements IFilter{
 
 	private int[][] matrix;
 	private List<List<Integer>> list = new ArrayList<List<Integer>>(9);
@@ -16,6 +18,16 @@ public class Nagao {
 	public Nagao(int[][] matrix) {
 		super();
 		this.matrix = matrix;
+	}
+	
+	public Nagao(){
+		
+	}
+	
+	@Override
+	public int[][] addFilter(int[][] image) {
+		this.matrix = image;
+		return filter();
 	}
 
 	public void fillLists(int indexI, int indexJ)
@@ -153,7 +165,7 @@ public class Nagao {
 	
 	public int[][] filter() {
 		int[][] filtered = new int[matrix.length][matrix[0].length];
-		System.out.println(matrix.length+" "+ matrix[0].length);
+		//System.out.println(matrix.length+" "+ matrix[0].length);
 		for (int i = 0; i < filtered.length; i++) {
 			for (int j = 0; j < filtered[0].length; j++) {
 				filtered[i][j] = matrix[i][j];
@@ -178,4 +190,6 @@ public class Nagao {
 		}
 		return filtered;
 	}
+
+
 }

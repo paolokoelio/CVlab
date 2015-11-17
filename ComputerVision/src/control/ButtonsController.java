@@ -5,10 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextArea;
 
+import cleanNoise.Average;
+import cleanNoise.Median;
+import cleanNoise.Nagao;
+import filter.BoxFilter;
 import filter.Compass;
 import filter.DogFilter;
 import filter.GaussianBlur;
+import filter.KirshFilter;
+import filter.PrewittFilter;
+import filter.RankFilter;
+import filter.SharpeningFilter;
 import filter.SobelFilter;
+import filter.SobelPhaseFilter;
+import filter.ThreeOnNineFilter;
 import model.Editor;
 import noise.MixedNoise;
 import noise.SaltAndPepper;
@@ -88,7 +98,7 @@ public class ButtonsController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				editor.setFilter(new BoxFilter());
+				editor.setFilter(new BoxFilter());
 				editor.filter();
 				history.append("Applied Box Filter\n");
 
@@ -99,7 +109,7 @@ public class ButtonsController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				editor.setFilter(new SharpeningFilter());
+				editor.setFilter(new SharpeningFilter());
 				editor.filter();
 				history.append("Applied Sharpening Filter\n");
 			}
@@ -114,7 +124,7 @@ public class ButtonsController {
 				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
 						"Insert the window width");
 				String[] res = in.getResults();
-//				editor.setFilter(new RankFilter(Integer.parseInt((res[0]))));
+				editor.setFilter(new RankFilter(Integer.parseInt((res[0]))));
 				editor.filter();
 				history.append("Applied Rank Filter with w = " + res[0] + "\n");
 			}
@@ -134,7 +144,7 @@ public class ButtonsController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				editor.setFilter(new SobelPhaseFilter());
+				editor.setFilter(new SobelPhaseFilter());
 				editor.filter();
 				history.append("Applied Sobel Phase Filter\n");
 			}
@@ -144,7 +154,7 @@ public class ButtonsController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//				editor.setFilter(new KirshFilter());
+				editor.setFilter(new KirshFilter());
 				editor.filter();
 				history.append("Applied Kirsh Filter\n");
 			}
@@ -178,8 +188,7 @@ public class ButtonsController {
 				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
 						"Insert p and tau");
 				String[] res = in.getResults();
-//				editor.setFilter(new ThreeOnNineFilter(Double
-//						.parseDouble((res[0])), Double.parseDouble((res[1]))));
+				editor.setFilter(new ThreeOnNineFilter(Double.parseDouble(res[0]), Double.parseDouble(res[1])));
 				editor.filter();
 				history.append("Applied Three on Nine Filter with p = "
 						+ res[0] + " and tau = " + res[1] + "\n");
@@ -190,15 +199,14 @@ public class ButtonsController {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String[] p = new String[1];
-				p[0] = "s";
-				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
-						"Insert the size of the nagao kernel (odd number)");
-				String[] res = in.getResults();
-//				editor.setFilter(new NagaoFilter(Integer.parseInt((res[0]))));
+//				String[] p = new String[1];
+//				p[0] = "s";
+//				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+//						"Insert the size of the nagao kernel (odd number)");
+//				String[] res = in.getResults();
+				editor.setFilter(new Nagao());
 				editor.filter();
-				history.append("Applied Nagao Filter with kernel size = "
-						+ res[0] + "\n");
+				history.append("Applied Nagao Filter\n");
 			}
 		});
 		
@@ -226,6 +234,44 @@ public class ButtonsController {
 				editor.setFilter(new Compass(editor.getImage()));
 				editor.filter();
 				history.append("Applied Compass\n");
+			}
+		});
+		
+		bottoni.getFilters()[11].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				editor.setFilter(new Average(editor.getImage()));
+				editor.filter();
+				history.append("Applied Average Denoise\n");
+			}
+		});
+		
+		bottoni.getFilters()[12].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] p = new String[1];
+				p[0] = "n";
+				JOptionPaneMultipleInput in = new JOptionPaneMultipleInput(p,
+						"Insert the value of n");
+				String[] res = in.getResults();
+				
+				editor.setFilter(new Median(Integer.parseInt(res[0])));
+				editor.filter();
+				history.append("Applied Median Denoise\n");
+			}
+		});
+		
+		bottoni.getFilters()[13].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				editor.setFilter(new PrewittFilter());
+				editor.filter();
+				history.append("Applied Prewitt Filter\n");
 			}
 		});
 		

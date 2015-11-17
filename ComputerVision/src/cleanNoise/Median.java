@@ -2,13 +2,24 @@ package cleanNoise;
 
 import java.util.Arrays;
 
-public class Median {
+import filter.IFilter;
+
+public class Median implements IFilter {
 	
 	private int[][] matrix;
+	private int n;
+	
 
-	public Median(int[][] matrix) {
+	public Median(int n) {
 		super();
-		this.matrix = matrix;
+		this.n = n;
+	}
+	
+	@Override
+	public int[][] addFilter(int[][] image) {
+		this.matrix=image;
+		filter(n);
+		return matrix;
 	}
 	
 	public int getMedianAvg(int[][] threeByThree, int n) {
@@ -56,5 +67,7 @@ public class Median {
 	public int[][] getMatrix() {
 		return matrix;
 	}
+
+
 
 }

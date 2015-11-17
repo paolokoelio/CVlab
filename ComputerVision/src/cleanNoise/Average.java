@@ -1,12 +1,22 @@
 package cleanNoise;
 
-public class Average {
+import filter.IFilter;
+
+public class Average implements IFilter {
 	
 	private int[][] matrix;
 
 	public Average(int[][] matrix) {
 		super();
 		this.matrix = matrix;
+	}
+	
+	
+	@Override
+	public int[][] addFilter(int[][] image) {
+		this.matrix = image;
+		filter();
+		return matrix;
 	}
 	
 	public int get3by3Avg(int[][] threeByThree) {
@@ -47,5 +57,7 @@ public class Average {
 	public int[][] getMatrix() {
 		return matrix;
 	}
+
+
 
 }
