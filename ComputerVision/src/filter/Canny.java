@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 
 
-public class Canny {
+public class Canny implements IFilter{
 
 	// statics
 	
@@ -40,13 +40,12 @@ public class Canny {
 	 * Constructs a new detector with default parameters.
 	 */
 	
-	public Canny(int[][] matrix) {
+	public Canny() {
 		lowThreshold = 0.1f;
 		highThreshold = 4.5f;
 		gaussianKernelRadius = 2f;
 		gaussianKernelWidth = 16;
 		contrastNormalized = false;
-		sourceImage = Utils.matrixToBuffered(matrix);
 	}
 
 	// accessors
@@ -124,7 +123,8 @@ public class Canny {
 	
 	// methods
 	
-	public int[][] filter() {
+	public int[][] filter(int[][] matrix) {
+		sourceImage = Utils.matrixToBuffered(matrix);
 		width = sourceImage.getWidth();
 		height = sourceImage.getHeight();
 		picsize = width * height;
@@ -388,6 +388,11 @@ public class Canny {
 			edgesImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		}
 		edgesImage.getWritableTile(0, 0).setDataElements(0, 0, width, height, pixels);
+	}
+
+	@Override
+	public int[][] addFilter(int[][] image) {
+		return filter(image);
 	}
  
 }

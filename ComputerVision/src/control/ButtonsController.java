@@ -9,6 +9,7 @@ import cleanNoise.Average;
 import cleanNoise.Median;
 import cleanNoise.Nagao;
 import filter.BoxFilter;
+import filter.Canny;
 import filter.Compass;
 import filter.DogFilter;
 import filter.GaussianBlur;
@@ -272,6 +273,17 @@ public class ButtonsController {
 				editor.setFilter(new PrewittFilter());
 				editor.filter();
 				history.append("Applied Prewitt Filter\n");
+			}
+		});
+		
+		bottoni.getFilters()[14].addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				editor.setFilter(new Canny());
+				editor.filter();
+				history.append("Applied Canny Filter\n");
 			}
 		});
 		

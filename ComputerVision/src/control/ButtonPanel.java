@@ -26,7 +26,7 @@ public class ButtonPanel extends JPanel{
 
 		
 		
-		filters = new JButton[14];
+		filters = new JButton[15];
 		filters[0] = new JButton("Box");
 		filters[1] = new JButton("Sharpening");
 		filters[2] = new JButton("Rank");
@@ -41,6 +41,8 @@ public class ButtonPanel extends JPanel{
 		filters[11] = new JButton("Average Denoise");
 		filters[12] = new JButton("Median Denoise");
 		filters[13] = new JButton("Prewitt");
+		filters[14] = new JButton("Canny");
+
 
 
 
@@ -66,6 +68,7 @@ public class ButtonPanel extends JPanel{
 		add(filters[11]);
 		add(filters[12]);
 		add(filters[13]);
+		add(filters[14]);
 
 	}
 

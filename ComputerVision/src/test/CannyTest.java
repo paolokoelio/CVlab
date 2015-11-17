@@ -15,8 +15,8 @@ public class CannyTest {
 
 		try {
 			int[][] matrix = image.imageToMatrix();
-			Canny can = new Canny(matrix);
-			Utils.printImage(Utils.matrixToBuffered(can.filter()), "prova");
+			Canny can = new Canny();
+			Utils.printImage(Utils.matrixToBuffered(can.filter(matrix)), "prova");
 
 		} catch (IOException e) {
 			e.printStackTrace();
