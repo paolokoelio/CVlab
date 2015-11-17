@@ -115,6 +115,25 @@ public class Utils {
 		frame.setTitle(str);
 		return frame;
 	}
+	
+	public static int[][] bufferedToMatrix(BufferedImage bufferedImage) {
+		
+		int height = bufferedImage.getHeight();
+		int width = bufferedImage.getWidth();
+				
+				
+		int[][] matrix = new int[height][width];
+		
+		
+		
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				Color color = new Color(bufferedImage.getRGB(j, i));
+				matrix[i][j] = color.getBlue();
+			}
+		}	
+		return matrix;
+	}
 
 
 }

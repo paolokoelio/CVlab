@@ -2,8 +2,8 @@ package filter;
 
 public class SobelFilter implements IFilter {
 
-	private float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };
-	private float[][] horizontalMask = { { 1, (float) Math.sqrt(2), 1 }, { 0, 0, 0 },
+	public static  float[][] verticalMask = { { 1, 0, -1 }, { (float) Math.sqrt(2), 0, -(float) Math.sqrt(2) }, { 1, 0, -1 } };
+	public static float[][] horizontalMask = { { 1, (float) Math.sqrt(2), 1 }, { 0, 0, 0 },
 			{ -1, -(float) Math.sqrt(2), -1 } };
 
 	private int[][] matrix;
