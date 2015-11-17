@@ -37,7 +37,7 @@ public class CleaningSaltAndPepperTest {
 			Average avg = new Average(noisedMatrix);
 			avg.filter();
 
-			Utils.printImage(Utils.matrixToBuffered(avg.getMatrix()), "cleant - avg");
+			Utils.printImage(Utils.matrixToBuffered(avg.getMatrix()), "clean - avg");
 
 			/**
 			 * noising the image with median filter
