@@ -5,15 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextArea;
 
-import filter.Compass;
-import filter.DogFilter;
-import filter.GaussianBlur;
-import filter.SobelFilter;
 import filter.Utils;
 import model.Editor;
-import noise.MixedNoise;
-import noise.SaltAndPepper;
-import noise.UniformNoise;
 import view.MenuBar;
 
 public class MenuController {

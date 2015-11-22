@@ -8,7 +8,7 @@ import java.util.Observable;
 import javax.imageio.ImageIO;
 
 import filter.IFilter;
-import filter.ImageLoader;
+import filter.PgmUtils;
 import filter.Utils;
 import noise.INoise;
 
@@ -37,13 +37,16 @@ public class Editor extends Observable {
 	}
 
 	public void openImage(String fileName) {
-		ImageLoader matrix = new ImageLoader(fileName);
-		try {
-			image = matrix.imageToMatrix();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		PgmUtils util = new PgmUtils();
+	
+//		Compass three = new Compass();
+//			Utils.printImage(Utils.matrixToBuffered(util.readPGM("image/inverno.pgm").getPixels()), "awgag");
+//			Utils.printImage(Utils.matrixToBuffered(three.filter()), "prova");
+
+	
+		
+			this.image = util.readPGM(fileName).getPixels();
+		
 		update();
 	}
 
@@ -77,5 +80,6 @@ public class Editor extends Observable {
 	public int[][] getImage() {
 		return image;
 	}
+	
 
 }

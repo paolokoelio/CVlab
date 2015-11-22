@@ -29,8 +29,6 @@ public class UniformNoise  implements INoise{
 				if (matrix[i][j]>255) {
 					matrix[i][j] = 255;
 				}
-				//System.out.println(image[i][j]+" "+ matrix[i][j]);
-
 			}
 		}
 		
