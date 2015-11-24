@@ -4,17 +4,17 @@ import java.util.Random;
 
 public class SaltAndPepper implements INoise {
 
-	private float upper;
-	private float lower;
+	private float up;
+	private float low;
 
 	public SaltAndPepper(float upper, float lower) {
 		super();
-		this.upper = upper;
-		this.lower = lower;
+		this.up = upper;
+		this.low = lower;
 	}
 
 	/**
-	 * Adding noise between an upper and a lower boundary passd as params.
+	 * Adding noise between an upper and a lower boundary passed as params.
 	 */
 	@Override
 	public int[][] addNoise(int[][] image) {
@@ -24,11 +24,11 @@ public class SaltAndPepper implements INoise {
 		for (int i = 0; i < image.length; i++) {
 			for (int j = 0; j < image[0].length; j++) {
 
-				float tmp = casual();
+				float tmp = random();
 
-				if (tmp > upper) {
+				if (tmp > up) {
 					matrix[i][j] = 255;
-				} else if (tmp < lower) {
+				} else if (tmp < low) {
 					matrix[i][j] = 0;
 				} else {
 					matrix[i][j] = image[i][j];
@@ -42,7 +42,7 @@ public class SaltAndPepper implements INoise {
 		return matrix;
 	}
 
-	private float casual() {
+	private float random() {
 		Random random = new Random();
 		return random.nextFloat();
 	}
