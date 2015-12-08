@@ -28,17 +28,17 @@ public class NagaoTest {
 
 			INoise noise = new MixedNoise(constant, up, down);
 
-			Utils.printImage(Utils.matrixToBuffered(matrix), "originale");
+			Utils.printImage(Utils.matrixToBuffered(matrix), "original");
 
 			Nagao filter = new Nagao(matrix, DIM);
 
-			Utils.printImage(Utils.matrixToBuffered(filter.filter()), "nagao - originale");
+			Utils.printImage(Utils.matrixToBuffered(filter.filter()), "nagao - original");
 
 			int[][] noisedMatrix = new int[matrix.length][matrix[0].length];
 			noisedMatrix = noise.addNoise(matrix);
 
-			// sporco l'immagine
-			Utils.printImage(Utils.matrixToBuffered(noisedMatrix), "sporcata");
+			// dirtening
+			Utils.printImage(Utils.matrixToBuffered(noisedMatrix), "dirten");
 
 			Nagao filterN = new Nagao(noisedMatrix, DIM);
 

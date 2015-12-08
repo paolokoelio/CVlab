@@ -4,22 +4,22 @@ import java.io.IOException;
 
 import cleanNoise.Average;
 import cleanNoise.Median;
+import cleanNoise.Nagao;
 import noise.INoise;
-import noise.MixedNoise;
+import noise.UniformNoise;
 import utils.ImageLoader;
 import utils.Utils;
 
-public class CleaningSaltAndPepperTest {
+public class CleaningUniform {
 
 	public static void main(String[] args) {
 
-		float up = (float) 0.9;
-		float down = (float) 0.1;
 		int constant = 50;
+		int DIM = 7;
 
 		ImageLoader image = new ImageLoader("image/inverno.jpg");
 
-		INoise noise = new MixedNoise(constant, up, down);
+		INoise noise = new UniformNoise(constant);
 
 		try {
 			int[][] matrix = image.imageToMatrix();
@@ -40,11 +40,18 @@ public class CleaningSaltAndPepperTest {
 			Utils.printImage(Utils.matrixToBuffered(avg.getMatrix()), "clean - avg");
 
 			/**
-			 * noising the image with median filter
+			 * de-noising the image with median filter
 			 */
 			Median median = new Median(noisedMatrix);
 			median.filter(1);
 			Utils.printImage(Utils.matrixToBuffered(median.getMatrix()), "clean - median");
+			
+			/**
+			 * de-noising the image with nagao filter
+			 */
+			Nagao nagao = new Nagao(noisedMatrix, DIM);
+			median.filter(1);
+			Utils.printImage(Utils.matrixToBuffered(nagao.filter()), "clean - nagao");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

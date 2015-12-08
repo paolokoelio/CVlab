@@ -21,6 +21,7 @@ public class ThreeOverNineTest {
 			ThreeOnNineFilter filter = new ThreeOnNineFilter(matrix, tau, P);
 
 			Utils.printImage(Utils.matrixToBuffered(filter.filter()), "3to9");
+			Utils.saveImage(Utils.matrixToBuffered(filter.filter()),"3to9");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

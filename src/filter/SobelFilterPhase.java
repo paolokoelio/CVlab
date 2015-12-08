@@ -30,7 +30,7 @@ public class SobelFilterPhase {
 			for (int j = 0; j < vertical[0].length; j++) {
 				//sobel[i][j] = (float) Math.sqrt(horizontal[i][j]*horizontal[i][j] + vertical[i][j]*vertical[i][j]);
 				sobel[i][j] += (float) (180 * Math.atan2(vertical[i][j], horizontal[i][j]));
-				System.out.println(sobel[i][j]);
+				//System.out.println(sobel[i][j]);
 				if (sobel[i][j] > 255) {
 					sobel[i][j] = 255;
 				}
@@ -41,7 +41,7 @@ public class SobelFilterPhase {
 		}
 	
 		
-		//equalizzazione di bardo (per cambiare mettere int[][] come ritorno
+		//equalizzazione (per cambiare mettere int[][] come ritorno
 		
 		
 		double min = sobel[0][0];
@@ -73,7 +73,7 @@ public class SobelFilterPhase {
 		}
 		
 		
-		//-- fine bardo
+		//-- fine
 		
 		
 

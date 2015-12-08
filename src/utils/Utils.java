@@ -2,7 +2,10 @@ package utils;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,7 +26,7 @@ public class Utils {
 
 	public static BufferedImage matrixToBuffered(float[][] matrix) {
 
-		BufferedImage buffered = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage buffered = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_3BYTE_BGR);
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
@@ -38,7 +41,7 @@ public class Utils {
 
 	public static BufferedImage matrixToBuffered(int[][] matrix) {
 
-		BufferedImage buffered = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage buffered = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_3BYTE_BGR);
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
@@ -53,7 +56,7 @@ public class Utils {
 
 	public static BufferedImage matrixToBuffered(double[][] matrix) {
 
-		BufferedImage buffered = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage buffered = new BufferedImage(matrix[0].length, matrix.length, BufferedImage.TYPE_3BYTE_BGR);
 
 		for (int i = 0; i < matrix.length; i++) {
 			for (int j = 0; j < matrix[0].length; j++) {
@@ -64,6 +67,15 @@ public class Utils {
 
 		return buffered;
 
+	}
+	
+	public static void saveImage(BufferedImage image, String filename) {
+		File outputfile = new File("results/" + filename);
+		try {
+			ImageIO.write(image, "jpg", outputfile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

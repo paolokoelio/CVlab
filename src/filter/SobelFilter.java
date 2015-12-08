@@ -55,7 +55,7 @@ public class SobelFilter {
 			for (int j = 0; j < filtered[0].length; j++) {
 				filtered[i][j] = matrix[i][j];
 				if (filtered[i][j] > 255) {
-					System.out.println(filtered[i][j]);
+					//System.out.println(filtered[i][j]);
 				}
 			}
 		}
@@ -63,7 +63,7 @@ public class SobelFilter {
 			for (int j = 0; j < filtered[0].length; j++) {
 				filtered1[i][j] = matrix[i][j];
 				if (filtered[i][j] > 255) {
-					System.out.println(filtered[i][j]);
+					//System.out.println(filtered[i][j]);
 				}
 			}
 		}
@@ -83,7 +83,7 @@ public class SobelFilter {
 				if (convolution<-255) {
 					convolution = -255;
 				}
-				System.out.println(convolution);
+				//System.out.println(convolution);
 
 				filtered1[i][j] = convolution;
 			}

@@ -18,6 +18,7 @@ public class SobelModuleAndPhaseTest {
 			SobelFilter sobel = new SobelFilter(matrix);
 			Utils.printImage(Utils.matrixToBuffered(sobel.getSobelMatrix()), "Sobel Module");
 			
+			Utils.saveImage(Utils.matrixToBuffered(sobel.getSobelMatrix()),"sobel_module");
 			
 			SobelFilterPhase sobel2 = new SobelFilterPhase(matrix);
 			//Normalization normalized = new Normalization(160, 150);
@@ -25,6 +26,9 @@ public class SobelModuleAndPhaseTest {
 			Utils.printImage(Utils.matrixToBuffered(sobel2.getSobelMatrix()), "Sobel Phase");
 			//Utils.printImage(Utils.matrixToBuffered(normalized.run(sobel2.getSobelMatrix())), "Sobel Phase Normalized");
 
+			Utils.saveImage(Utils.matrixToBuffered(sobel2.getSobelMatrix()),"sobel_phase");
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
